@@ -8,8 +8,8 @@ use serde_json::{Value, json};
 use http_body_util::BodyExt;
 use tower_http::services::ServeDir;
 
-const WEB_ROOT: &str = "../web";
-const LAYOUT_FILE: &str = "../web/.layout.html";
+const WEB_ROOT: &str = "web";
+const LAYOUT_FILE: &str = "web/.layout.html";
 
 #[derive(Debug)]
 enum ApiError {
