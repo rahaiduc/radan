@@ -86,8 +86,8 @@ fn create_app() -> Router{
 #[tokio::main]
 async fn main(){
     let app = create_app();
-
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000")
+    let port = std::env::var("PORT").unwrap_or_else(|_| "3000".to_string());
+    let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{}", port))
         .await
         .expect("failed to bind tcp listener");
 
