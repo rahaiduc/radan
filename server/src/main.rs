@@ -1,6 +1,15 @@
-use axum::{Json, Router, extract::Path, http::StatusCode, response::IntoResponse, routing::get};
+use axum::{
+    Json, Router,
+    http::StatusCode,
+    response::{Html, IntoResponse},
+    routing::get,
+};
 use serde_json::{Value, json};
 use http_body_util::BodyExt;
+use tower_http::services::ServeDir;
+
+const WEB_ROOT: &str = "../web";
+const LAYOUT_FILE: &str = "../web/.layout.html";
 
 #[derive(Debug)]
 enum ApiError {
@@ -38,26 +47,40 @@ async fn health_check() -> impl IntoResponse {
     }))
 }
 
-async fn list_users() -> Result<Json<Value>, ApiError> {
-    Err(ApiError::InternalError)
+/// Reads `.layout.html`, reads the page fragment, substitutes `{{outlet}}`, returns HTML.
+async fn render_page(name: &str) -> axum::response::Response {
+    let page_path = format!("{}/{}", WEB_ROOT, name);
+    let (layout_res, page_res) = tokio::join!(
+        tokio::fs::read_to_string(LAYOUT_FILE),
+        tokio::fs::read_to_string(&page_path),
+    );
+    let layout = match layout_res {
+        Ok(s) => s,
+        Err(_) => return (StatusCode::INTERNAL_SERVER_ERROR, "layout missing").into_response(),
+    };
+    let content = match page_res {
+        Ok(s) => s,
+        Err(_) => return StatusCode::NOT_FOUND.into_response(),
+    };
+    Html(layout.replace("{{outlet}}", &content)).into_response()
 }
 
-async fn get_user(Path(id): Path<u32>) -> Result<Json<Value>, ApiError> {
-    if id > 100 {
-        return Err(ApiError::NotFound);
-    }
+async fn index() -> axum::response::Response {
+    render_page("index.html").await
+}
 
-    Ok(Json(json!({
-        "id": id,
-        "name": "User"
-    })))
+/// Layout file is a template, not a public page. Block direct access.
+async fn forbid_layout() -> StatusCode {
+    StatusCode::NOT_FOUND
 }
 
 fn create_app() -> Router{
     Router::new()
+        .route("/", get(index))
+        .route("/index.html", get(index))
+        .route("/.layout.html", get(forbid_layout))
         .route("/health", get(health_check))
-        .route("/users", get(list_users))
-        .route("/users/{id}", get(get_user))
+        .fallback_service(ServeDir::new(WEB_ROOT))
 }
 
 #[tokio::main]
@@ -119,5 +142,42 @@ use super::*;
             let response = error.into_response();
             assert_eq!(response.status(), expected_status)
         }
+    }
+
+    #[tokio::test]
+    async fn test_index_renders_layout_with_content() {
+        let app = create_app();
+
+        let request = Request::builder()
+            .uri("/")
+            .body(Body::empty())
+            .unwrap();
+
+        let response = app.oneshot(request).await.unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
+
+        let body = response.collect().await.unwrap().to_bytes();
+        let html = String::from_utf8(body.to_vec()).unwrap();
+
+        // Layout chrome must be present
+        assert!(html.contains("<!DOCTYPE html>"), "missing DOCTYPE from layout");
+        assert!(html.contains("class=\"site-footer\""), "missing footer from layout");
+        // Page fragment must be inlined where {{outlet}} was
+        assert!(html.contains("class=\"content-container\""), "missing page fragment");
+        // Placeholder must have been substituted
+        assert!(!html.contains("{{outlet}}"), "{{outlet}} placeholder not substituted");
+    }
+
+    #[tokio::test]
+    async fn test_layout_file_blocked() {
+        let app = create_app();
+
+        let request = Request::builder()
+            .uri("/.layout.html")
+            .body(Body::empty())
+            .unwrap();
+
+        let response = app.oneshot(request).await.unwrap();
+        assert_eq!(response.status(), StatusCode::NOT_FOUND);
     }
 }

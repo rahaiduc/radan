@@ -1,0 +1,109 @@
+/* ====================================================================
+   THEME - Strawhat
+   ==================================================================== */
+
+:root {
+  --bg-page: #f4e8c8;
+  --pink-deep: #3a1f0a;       /* tinta negra-marrón */
+  --pink-rose: #5a3318;       /* sepia profundo (banners) */
+  --pink-fire: #8b5e2e;       /* marrón principal — bordes y acentos */
+  --pink-bright: #b8651f;     /* naranja quemado — hover */
+  --pink-hot: #c97e2c;        /* naranja cálido */
+  --pink-mid: #d2b48c;        /* tan claro */
+  --pink-soft: #f4e8c8;       /* pergamino */
+  --pink-pale: #fdf6e3;       /* crema */
+  --pink-cream: #fffaf3;      /* casi blanco */
+  --sakura: #d4a017;          /* dorado (paja vieja) */
+  --sakura-deep: #b8851a;     /* dorado profundo */
+  --sakura-pale: #fce8a0;     /* dorado pálido */
+  --rose-gold: #c97e2c;
+  --gold-soft: #d4a017;
+  --gold-pale: #fce8a0;
+  --cream: #fdf6e3;
+  --branch: #4a2818;
+  --branch-dark: #2a1810;
+  --bark: #6b4423;
+  --leaf-dark: #5a3a18;
+  --white: #ffffff;
+  --black: #0a0a0a;
+
+  /* TEXT */
+  --text-dark: #3a1f0a;
+  --text-mid: #5a3318;
+  --text-soft: #8b5e2e;
+  --text-accent: #8b4513;     /* saddle brown */
+  --text-accent-hot: #b8651f; /* naranja quemado */
+  --text-accent-deep: #5a3318;
+  --text-title: #fdf6e3;
+  --text-on-dark: #fdf6e3;
+  --color-marquee: #fdf6e3;
+  --color-btn88: #3a1f0a;
+
+  /* GLASS & OVERLAYS */
+  --overlay-bg: rgba(244, 232, 200, 0.20);
+  --glass-bg: rgba(244, 232, 200, 0.92);
+  --glass-bg-solid: rgba(253, 246, 227, 0.97);
+  --glass-bg-lite: rgba(253, 246, 227, 0.92);
+  --glass-bg-card: rgba(253, 246, 227, 0.95);
+  --glass-bg-tag: rgba(212, 160, 23, 0.12);
+  --glass-bg-tag-hover: rgba(201, 126, 44, 0.28);
+  --glass-bg-quote: rgba(244, 232, 200, 0.55);
+  --glass-bg-shrine: rgba(253, 246, 227, 0.50);
+  --glass-bg-shrine-hover: rgba(244, 232, 200, 0.70);
+
+  /* BORDERS & SHADOWS */
+  --border-light: rgba(74, 40, 24, 0.30);
+  --border-medium: rgba(74, 40, 24, 0.50);
+  --border-pink-strong: rgba(139, 94, 46, 0.65);
+  --shadow-pink: rgba(212, 160, 23, 0.25);
+  --shadow-pink-deep: rgba(74, 40, 24, 0.30);
+  --shadow-pink-soft: rgba(184, 101, 31, 0.15);
+  --shadow-pink-mid: rgba(74, 40, 24, 0.35);
+  --glow-pink: rgba(245, 200, 66, 0.55);
+  --inset-pink: rgba(253, 246, 227, 0.40);
+
+  /* TEXT SHADOWS */
+  --t-shadow-light: 0 1px 0 rgba(253, 246, 227, 0.95);
+  --t-shadow-white: 1px 1px 0 rgba(253, 246, 227, 1);
+  --t-shadow-dark: 1px 1px 0 rgba(74, 40, 24, 0.5);
+  --t-shadow-deep: 0 1px 2px rgba(74, 40, 24, 0.55);
+  --t-shadow-pink: 0 0 8px rgba(184, 101, 31, 0.5);
+
+  /* FONTS */
+  --font-display: 'Pirata One', 'Press Start 2P', serif;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-vt323: 'VT323', monospace;
+  --font-body: 'Nunito', sans-serif;
+
+  /* GRADIENTS */
+  --grad-marquee: linear-gradient(90deg, #2a1810, #4a2818, #8b5e2e, #c97e2c, #d4a017, #c97e2c, #8b5e2e, #4a2818, #2a1810);
+  --grad-title: linear-gradient(90deg, #4a2818, #6b4423, #8b5e2e, #6b4423, #4a2818);
+  --grad-sky: linear-gradient(180deg, #fdf6e3 0%, #f4e8c8 40%, #e8d8a8 70%, #d4b88a 100%);
+  --grad-parchment: linear-gradient(135deg, #fdf6e3, #f4e8c8, #fdf6e3);
+  --grad-rose-banner: linear-gradient(90deg, #5a3318, #8b5e2e, #5a3318);
+
+  /* BACKGROUND IMAG */
+  --bg-image: url('/assets/sakura-pc.png');
+
+  /* HEADER */
+  --grad-header:
+    radial-gradient(circle at 75% 35%, rgba(255, 250, 243, 0.6), transparent 50%),
+    radial-gradient(circle at 25% 75%, rgba(212, 160, 23, 0.35), transparent 55%),
+    linear-gradient(135deg, #fdf6e3 0%, #f4e8c8 25%, #d4b88a 55%, #c97e2c 80%, #8b5e2e 100%);
+  --grad-sun: radial-gradient(circle, #fffaf3 0%, #fce8a0 30%, #f5c842 60%, #d4a017 80%, transparent 88%);
+  --silhouette: #3a1f0a;
+  --silhouette-fade: rgba(58, 31, 10, 0.5);
+
+  /* WIDGET ART */
+  --art-sunset: linear-gradient(135deg, #fce8a0 0%, #f5c842 30%, #d4a017 60%, #b8651f 100%);
+  --art-night:  linear-gradient(180deg, #2a1810 0%, #1a0e08 50%, #0a0606 100%);
+  --art-fire:   linear-gradient(135deg, #fce8a0 0%, #f5c842 35%, #c97e2c 70%, #8b5e2e 100%);
+  --art-gold:   linear-gradient(135deg, #fdf6e3 0%, #fce8a0 35%, #f5c842 65%, #d4a017 100%);
+  --art-blade:  linear-gradient(135deg, #0a0606 0%, #2a1810 50%, #d4a017 100%);
+  --art-sakura: linear-gradient(135deg, #fdf6e3 0%, #f4e8c8 50%, #d2b48c 100%);
+
+  /* BORDER UTILS */
+  --border-pink: 2px solid var(--pink-fire);
+  --border-pink-soft: 2px solid var(--pink-mid);
+  --border-dashed: 2px dashed var(--pink-fire);
+}

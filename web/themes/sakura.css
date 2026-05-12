@@ -1,0 +1,109 @@
+/* ====================================================================
+   THEME - Sakura - Hanami
+   ==================================================================== */
+
+:root {
+  --bg-page: #fff0f5;
+  --pink-deep: #9d174d;
+  --pink-rose: #be185d;
+  --pink-fire: #db2777;
+  --pink-bright: #ec4899;
+  --pink-hot: #f472b6;
+  --pink-mid: #f9a8d4;
+  --pink-soft: #fbcfe8;
+  --pink-pale: #fce7f3;
+  --pink-cream: #fff5f8;
+  --sakura: #ffb7c5;
+  --sakura-deep: #ff8fa3;
+  --sakura-pale: #ffe0e9;
+  --rose-gold: #e8a4b8;
+  --gold-soft: #f5c842;
+  --gold-pale: #fce8a0;
+  --cream: #fffaf3;
+  --branch: #4a2818;
+  --branch-dark: #2a1810;
+  --bark: #6b4423;
+  --leaf-dark: #5a3a48;
+  --white: #ffffff;
+  --black: #1a0a14;
+
+  /* TEXT */
+  --text-dark: #831843;
+  --text-mid: #be185d;
+  --text-soft: #db2777;
+  --text-accent: #ec4899;
+  --text-accent-hot: #db2777;
+  --text-accent-deep: #9d174d;
+  --text-title: #fff5f8;
+  --text-on-dark: #fff5f8;
+  --color-marquee: #fff5f8;
+  --color-btn88: #831843;
+
+  /* GLASS & OVERLAYS */
+  --overlay-bg: rgba(255, 240, 245, 0.25);
+  --glass-bg: rgba(255, 245, 248, 0.85);
+  --glass-bg-solid: rgba(255, 250, 252, 0.97);
+  --glass-bg-lite: rgba(255, 250, 252, 0.92);
+  --glass-bg-card: rgba(255, 250, 252, 0.95);
+  --glass-bg-tag: rgba(244, 114, 182, 0.12);
+  --glass-bg-tag-hover: rgba(244, 114, 182, 0.28);
+  --glass-bg-quote: rgba(252, 231, 243, 0.6);
+  --glass-bg-shrine: rgba(255, 245, 248, 0.5);
+  --glass-bg-shrine-hover: rgba(252, 231, 243, 0.7);
+
+  /* BORDERS & SHADOWS */
+  --border-light: rgba(244, 114, 182, 0.35);
+  --border-medium: rgba(219, 39, 119, 0.45);
+  --border-pink-strong: rgba(190, 24, 93, 0.6);
+  --shadow-pink: rgba(244, 114, 182, 0.25);
+  --shadow-pink-deep: rgba(190, 24, 93, 0.3);
+  --shadow-pink-soft: rgba(244, 114, 182, 0.15);
+  --shadow-pink-mid: rgba(219, 39, 119, 0.35);
+  --glow-pink: rgba(255, 183, 197, 0.6);
+  --inset-pink: rgba(255, 245, 248, 0.4);
+
+  /* TEXT SHADOWS */
+  --t-shadow-light: 0 1px 0 rgba(255, 250, 252, 0.95);
+  --t-shadow-white: 1px 1px 0 rgba(255, 250, 252, 1);
+  --t-shadow-dark: 1px 1px 0 rgba(131, 24, 67, 0.4);
+  --t-shadow-deep: 0 1px 2px rgba(157, 23, 77, 0.45);
+  --t-shadow-pink: 0 0 8px rgba(244, 114, 182, 0.5);
+
+  /* FONTS */
+  --font-display: 'Pirata One', 'Press Start 2P', serif;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-vt323: 'VT323', monospace;
+  --font-body: 'Nunito', sans-serif;
+
+  /* GRADIENTS */
+  --grad-marquee: linear-gradient(90deg, #fce7f3, #f9a8d4, #ec4899, #db2777, #ec4899, #f9a8d4, #fce7f3);
+  --grad-title: linear-gradient(90deg, #f9a8d4, #ec4899, #db2777, #ec4899, #f9a8d4);
+  --grad-sky: linear-gradient(180deg, #fde8f0 0%, #fbd5e2 25%, #f9c5d6 50%, #fbd5e2 75%, #ffeaf2 100%);
+  --grad-parchment: linear-gradient(135deg, #fff5f8, #fce7f3, #fff5f8);
+  --grad-rose-banner: linear-gradient(90deg, #db2777, #ec4899, #db2777);
+
+  /* BACKGROUND IMAGE */
+  --bg-image: url('/assets/sakura-pc.jpeg');
+
+  /* HEADER */
+  --grad-header:
+    radial-gradient(circle at 75% 35%, rgba(255, 250, 243, 0.7), transparent 50%),
+    radial-gradient(circle at 25% 75%, rgba(255, 183, 197, 0.55), transparent 55%),
+    linear-gradient(135deg, #fde8f0 0%, #fbcfe8 35%, #f9a8d4 65%, #f472b6 100%);
+  --grad-sun: radial-gradient(circle, #fffaf3 0%, #ffeaf2 40%, #ffb7c5 70%, transparent 75%);
+  --silhouette: #be185d;
+  --silhouette-fade: rgba(157, 23, 77, 0.5);
+
+  /* WIDGET ART */
+  --art-sunset: linear-gradient(135deg, #fde8f0 0%, #f9a8d4 40%, #ec4899 75%, #db2777 100%);
+  --art-night:  linear-gradient(180deg, #fbcfe8 0%, #f9a8d4 50%, #f472b6 100%);
+  --art-fire:   linear-gradient(135deg, #fce7f3 0%, #f472b6 50%, #db2777 100%);
+  --art-gold:   linear-gradient(135deg, #f9a8d4 0%, #f472b6 50%, #fce8a0 100%);
+  --art-blade:  linear-gradient(135deg, #fce7f3 0%, #ffb7c5 50%, #ec4899 100%);
+  --art-sakura: linear-gradient(135deg, #fff5f8 0%, #ffe0e9 50%, #ffb7c5 100%);
+
+  /* BORDER UTILS */
+  --border-pink: 2px solid var(--pink-fire);
+  --border-pink-soft: 2px solid var(--pink-mid);
+  --border-dashed: 2px dashed var(--pink-fire);
+}
