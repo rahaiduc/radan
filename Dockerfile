@@ -1,37 +1,26 @@
-# ==================== STAGE 1: BUILD ====================
-FROM --platform=linux/amd64 rust:1.85-bookworm AS builder
-
-RUN apt-get update && apt-get install -y musl-tools && rm -rf /var/lib/apt/lists/*
-RUN rustup target add x86_64-unknown-linux-musl
+FROM rust:1.85-bookworm AS builder
 
 WORKDIR /app
 
-# Copiamos Cargo files primero (para caching)
 COPY server/Cargo.toml server/Cargo.lock* ./server/
 WORKDIR /app/server
 
-RUN mkdir -p src && echo "fn main() {}" > src/main.rs
-RUN cargo build --release --target x86_64-unknown-linux-musl
-RUN rm src/main.rs
+RUN mkdir -p src && echo "fn main() {}" > src/main.rs && \
+    cargo build --release && \
+    rm src/main.rs
 
-# Copiamos el código fuente y compilamos de verdad
 COPY server/src ./src
-RUN cargo build --release --target x86_64-unknown-linux-musl
+RUN touch src/main.rs && cargo build --release
 
-# ==================== STAGE 2: RUNTIME ====================
-FROM --platform=linux/amd64 debian:bookworm-slim
+FROM debian:bookworm-slim
 
-RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y ca-certificates libgcc-s1 && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Copiamos el binario correcto (se llama "server")
-COPY --from=builder /app/server/target/x86_64-unknown-linux-musl/release/server ./server
-
-# Copiamos la carpeta web
+COPY --from=builder /app/server/target/release/server ./server
 COPY web ./web
 
 EXPOSE 3000
 
-# Ejecutamos el binario correcto
 CMD ["./server"]
