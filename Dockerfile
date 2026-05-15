@@ -1,5 +1,5 @@
 # ==================== STAGE 1: BUILD ====================
-FROM rust:1.85-bookworm AS builder
+FROM --platform=linux/amd64 rust:1.85-bookworm AS builder
 
 RUN apt-get update && apt-get install -y musl-tools && rm -rf /var/lib/apt/lists/*
 RUN rustup target add x86_64-unknown-linux-musl
@@ -19,7 +19,7 @@ COPY server/src ./src
 RUN cargo build --release --target x86_64-unknown-linux-musl
 
 # ==================== STAGE 2: RUNTIME ====================
-FROM debian:bookworm-slim
+FROM --platform=linux/amd64 debian:bookworm-slim
 
 RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
